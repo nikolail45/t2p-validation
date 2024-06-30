@@ -32,6 +32,9 @@ class MainValidationServiceTest {
     @Mock
     private ValidationFlowService validationFlowService;
 
+    @Mock
+    private ValidationTaskService validationTaskService;
+
     private static final String XSD_FILE_PATH = "src/main/resources/BPMN20.xsd";
 
     @BeforeEach
@@ -55,6 +58,7 @@ class MainValidationServiceTest {
         when(gatewayValidationService.validateGateways(anyString())).thenReturn(validResult);
         when(validationEventService.validateBpmnEvents(anyString())).thenReturn(validResult);
         when(validationFlowService.validateNoUnboundFlows(anyString())).thenReturn(validResult);
+        when(validationTaskService.validateTasks(anyString())).thenReturn(validResult);
 
         Map<String, Object> result = mainValidationService.validateAll(tempFile.getAbsolutePath());
         assertNotNull(result);
@@ -62,6 +66,7 @@ class MainValidationServiceTest {
         assertEquals("completed", ((Map)result.get("gatewayValidation")).get("validationStatus"));
         assertEquals("completed", ((Map)result.get("eventValidation")).get("validationStatus"));
         assertEquals("completed", ((Map)result.get("flowValidation")).get("validationStatus"));
+        assertEquals("completed", ((Map)result.get("taskValidation")).get("validationStatus"));
 
         tempFile.delete();
     }
