@@ -39,7 +39,7 @@ public class ValidationUtils {
                     errorDetails.put("message", saxError.getMessage());
                     errorDetails.put("suggestion", "Please fix the syntax error.");
                 } else if (error instanceof String) {
-                    errorDetails.put("type", "gateway");
+                    errorDetails.put("type", "syntax");
                     errorDetails.put("message", (String) error);
                     errorDetails.put("suggestion", "Please fix the configuration error.");
                 }
@@ -61,7 +61,7 @@ public class ValidationUtils {
                     warningDetails.put("message", saxWarning.getMessage());
                     warningDetails.put("suggestion", "Consider reviewing the complexity.");
                 } else if (warning instanceof String) {
-                    warningDetails.put("type", "gateway");
+                    warningDetails.put("type", "syntax");
                     warningDetails.put("message", (String) warning);
                     warningDetails.put("suggestion", "Consider reviewing the BPMN configuration.");
                 }
